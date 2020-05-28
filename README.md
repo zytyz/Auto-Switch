@@ -1,4 +1,7 @@
-# Switch
+# Auto-Switch
+## How To Run
+### Set up the ESP32 Server
+
 ## Compile Problem
 ### Wrong Servo Library
 ```
