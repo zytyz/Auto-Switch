@@ -24,3 +24,6 @@ exit status 1
 * [link](https://www.reddit.com/r/esp32/comments/brt87e/brownout_detector_was_triggered_when_activating/)
 	* Problem with hardware on voltage supply
 	* Change a usb cable or don't power from a pc
+
+### Choose the right Board
+* for ESP32, choose "DOIT ESP32 DEVKIT V1"
