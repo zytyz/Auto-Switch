@@ -73,8 +73,9 @@ def arduino_listen():
     global driver, arduino
     print('Listening to Arduino...')
     while True:
-        print("hihihi")
+        print("In Arduino Threading")
         # print(ca.newRequest)
+
         bytesOnBuffer = arduino.in_waiting
         print("Bytes available: {}".format(bytesOnBuffer))
 
