@@ -30,7 +30,7 @@ if __name__ == '__main__':
     httpd = HTTPServer(server_address_httpd, ca.RequestHandler_httpd)
     httpd.serve_forever()
 
-    buttonSignal = 0
+    buttonSignal = ca.MyRequest
 
     while True:
         data = arduino.readline()[:-2].decode('utf-8')
