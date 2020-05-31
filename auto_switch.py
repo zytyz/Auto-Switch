@@ -73,38 +73,36 @@ def arduino_listen():
     global driver, arduino
     print('Listening to Arduino...')
     while True:
-        # print("In Arduino Threading")
-        # print(ca.newRequest)
 
-        # bytesOnBuffer = arduino.in_waiting
-        # print("Bytes available: {}".format(bytesOnBuffer))
-
-        data = arduino.read(3)
-        # print(data)
-
-        data = data.decode('utf-8')[:-2]
-
-        prev = ca.COUNT
-
-        if data == 'i':
-            ca.COUNT += 1
-            print("Arduino i")
-        elif data == 'o':
-            ca.COUNT -= 1
-            print("Arduino o")
-
+        # Listen from App
         if ca.newRequest:
             appRequest = ca.MyRequest
             print(appRequest)
             ca.newRequest = False
             executeAppRequest(appRequest)
-            # driver = buttonClick(driver, buttonSignal)
-        elif prev == 1 and ca.COUNT == 0:
-            driver = allButtonClick(driver, 0)
-            print('nobody')
-        elif prev == 0 and ca.COUNT == 1:
-            driver = allButtonClick(driver, 1)
-            print('one person')
+
+        # Listen from Arduino Serial
+        else:
+            data = arduino.read(3)
+            # print(data)
+            data = data.decode('utf-8')[:-2]
+            prev = ca.COUNT
+
+            if data == 'i':
+                ca.COUNT += 1
+                print("Arduino i")
+            elif data == 'o':
+                ca.COUNT -= 1
+                if ca.COUNT < 0: ca.COUNT = 0
+                print("Arduino o")
+
+                # driver = buttonClick(driver, buttonSignal)
+            elif prev == 1 and ca.COUNT == 0:
+                driver = allButtonClick(driver, 0)
+                print('nobody')
+            elif prev == 0 and ca.COUNT == 1:
+                driver = allButtonClick(driver, 1)
+                print('one person')
 
 
 if __name__ == '__main__':
