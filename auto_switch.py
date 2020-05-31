@@ -76,15 +76,10 @@ def arduino_listen():
         # print("In Arduino Threading")
         # print(ca.newRequest)
 
-        bytesOnBuffer = arduino.in_waiting
-        print("Bytes available: {}".format(bytesOnBuffer))
+        # bytesOnBuffer = arduino.in_waiting
+        # print("Bytes available: {}".format(bytesOnBuffer))
 
-        if bytesOnBuffer > 0:
-            data = arduino.readline().decode('utf-8')
-            print(data)
-        else:
-            data = ''
-
+        data = arduino.read(3).decode('utf-8')
         print(data)
 
         prev = ca.COUNT
