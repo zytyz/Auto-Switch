@@ -11,7 +11,9 @@ class RequestHandler_httpd(BaseHTTPRequestHandler):
         global newRequest, MyRequest, COUNT
         MyRequest = self.requestline
         MyRequest = MyRequest[5:int(len(MyRequest) - 9)]
+        print(newRequest)
         newRequest = True
+        print(newRequest)
         print("You received this request: {}".format(MyRequest))
         message_to_send = bytes(str(COUNT), "utf")
         self.send_response(200)
