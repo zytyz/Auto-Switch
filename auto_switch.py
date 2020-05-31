@@ -3,13 +3,32 @@ import connect_app as ca
 from http.server import HTTPServer
 import serial
 import threading
+import sys
 
 # TODO
-# port = '/dev/cu.usbmodem14101'
-port = "/dev/cu.usbmodem143201"
-IP = '127.0.0.1'
+# port = '/dev/cu.usbmodem14101' # mhsu
+try:
+    port = sys.argv[1]
+    IP = sys.argv[2]
+except:
+    port = "/dev/cu.usbmodem143201" # zyt
+    IP = '192.168.0.102'
 
 STATE = [False, False, False]
+
+
+def executeAppRequest(appRequest):
+    global driver
+    if "Button" in appRequest:
+        buttonIdx = int(appRequest.split('_')[1])
+        buttonClick(driver, signal=buttonIdx)
+        print("Clicked Button {}".format(buttonIdx))
+    elif appRequest == "Update_Status":
+        print("Status Updated")
+    elif "Reset_Num_to_" in appRequest:
+        num = int(appRequest.split('_')[-1])
+        ca.COUNT = num
+        print("Number Reset")
 
 
 def buttonClick(driver, signal):
@@ -28,7 +47,7 @@ def allButtonClick(driver, signal):
 
 
 def run_server():
-    global IP
+    global httpd
     print("Start Server")
     httpd.serve_forever()
 
@@ -53,9 +72,9 @@ def arduino_listen():
         # print(ca.COUNT)
 
         if ca.newRequest:
-            buttonSignal = ca.MyRequest
+            appRequest = ca.MyRequest
             ca.newRequest = False
-            print(buttonSignal)
+            executeAppRequest(appRequest)
 
             # driver = buttonClick(driver, buttonSignal)
         elif prev == 1 and ca.COUNT == 0:
@@ -70,7 +89,7 @@ if __name__ == '__main__':
     # TODO
     # ESP32
 
-    server_address_httpd = ('192.168.0.102', 8080)
+    server_address_httpd = (IP, 8080)
     httpd = HTTPServer(server_address_httpd, ca.RequestHandler_httpd)
 
     driver = cw.connect_to_page()

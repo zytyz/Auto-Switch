@@ -6,11 +6,12 @@ button_name_dict = {1: 'First_Button', 2: 'Second_Button', 3: 'Third_Button'}
 
 def connect_to_page(url='http://192.168.0.106'):
     # Using Chrome to access web
-    driver = webdriver.Chrome('chromedriver')
-    # driver = webdriver.Chrome('./usr/lib/chromium-browser/chromedriver')
+
+    # driver = webdriver.Chrome('chromedriver')
+    driver = webdriver.Chrome('./usr/lib/chromium-browser/chromedriver')
     # driver = webdriver.Chrome('./chromedriver')
     # Open the website
-    driver.set_page_load_timeout(2)
+    driver.set_page_load_timeout(5)
     while True:
         try:
             driver.get(url)
@@ -25,7 +26,7 @@ def connect_to_page(url='http://192.168.0.106'):
 def button_click(driver, button_idx):
     global button_name_dict
     driver.find_element_by_name(button_name_dict[button_idx]).click()
-    time.sleep(1)
+    # time.sleep(1)
     return driver
 
 
