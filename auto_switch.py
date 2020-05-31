@@ -84,6 +84,8 @@ def arduino_listen():
             print(data)
         else:
             data = ''
+            
+        print(data)
 
         prev = ca.COUNT
         if data == 'i':
