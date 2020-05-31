@@ -3,9 +3,13 @@
 ### Set up the ESP32 Server
 ### Raspberry Pi
 1. Driver
-```
-https://blog.gtwang.org/iot/raspberry-pi/raspberry-pi-install-chromium-chrome-driver/
-```
+   - Unable to install **Chrome** on RPi. Therefore, the original *ChromeDriver* won’t work.
+   - Not able to find *Chromium Driver* for **Debian 10 armv7l**.
+   - With the help of [樹莓派 Raspberry Pi 使用 Python + Selenium 控制 Chromium 瀏覽器](https://blog.gtwang.org/iot/raspberry-pi/raspberry-pi-install-chromium-chrome-driver/), finally a suitable driver for our system.
+2. EXPORT PATH
+   - For the code to work properly, `/usr/lib/chromium-browser/chromedriver` needs to be export to the `PATH`.
+   - However, during the process, I’ve accidentally overwrite the original `PATH` which cause most of the block most of the commands.
+   - Eventually, `echo "[original PATH]" >> ~/.bashrc` to enable all those commands and then add `chromedriver` to the `PATH`
 ## Compile Problem
 ### Wrong Servo Library
 ```
