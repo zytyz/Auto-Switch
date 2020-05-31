@@ -1,4 +1,7 @@
 # Auto-Switch
+
+## Motivation
+
 ## System Architecture
 
 ## Code Explanation
@@ -23,7 +26,23 @@
 python auto_switch.py <port name> <IP address> <webpage URL>
 ```
 
+#### Downloading the app (Optional: Allows manual control)
+
+
 ## Running
+The switches are automatically controlled as people enter or exit the room. All switches are turned on when there are people remaining in the room, while all switches are turned off when everyone has exited.
+
+The switches can also be manually controlled via the app. We can also check or reset the current number of people in the room as well.
+#### App Interface
+There are three parts of the app interface:
+1. Setting IP address of Rpi
+2. Controlling the Switches
+3. Check the number of people remaining in the room
+<p align="center">
+   <img src="./images/app_screen.png" alt="image" width="250"/>
+   </br>
+   App Interface
+</p>
 
 
 ## Diffuculties and Solution
@@ -43,7 +62,7 @@ python auto_switch.py <port name> <IP address> <webpage URL>
 
       exit status 1
       開發板 DOIT ESP32 DEVKIT V1 編譯錯誤。
-      ```
+    ```
    - We solved this problem by installing the ESP32_Arduino_Servo_Library
       - [github](https://github.com/RoboticsBrno/ServoESP32): uncompress the directory
       - [Import a library](https://www.arduino.cc/en/guide/libraries): make sure "ServoESP32" is in the library
