@@ -18,6 +18,10 @@ STATE = [False, False, False]
 
 
 def executeAppRequest(appRequest):
+    """
+    :param appRequest(str): the string sent from the connected app
+    :return:
+    """
     global driver
     if "Button" in appRequest:
         buttonIdx = int(appRequest.split('_')[1])
@@ -32,6 +36,12 @@ def executeAppRequest(appRequest):
 
 
 def buttonClick(driver, signal):
+    """
+    Click the Button on the Webpage and change state
+    :param driver:
+    :param signal:
+    :return:
+    """
     global STATE
     driver = cw.button_click(driver, signal)
     STATE[signal - 1] = False if STATE[signal - 1] else True
@@ -65,8 +75,10 @@ def arduino_listen():
         prev = ca.COUNT
         if data == 'i':
             ca.COUNT += 1
+            print("Arduino i")
         elif data == 'o':
             ca.COUNT -= 1
+            print("Arduino o")
 
         # print(data)
         # print(ca.COUNT)
