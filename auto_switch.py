@@ -14,6 +14,11 @@ except:
     port = "/dev/cu.usbmodem143201"  # zyt
     IP = '192.168.0.102'
 
+try:
+    webpage_url = sys.argv[3]
+except:
+    webpage_url = '192.168.0.106'
+
 STATE = [False, False, False]
 
 
@@ -93,7 +98,8 @@ def arduino_listen():
                 print("COUNT: {}".format(ca.COUNT))
             elif data == 'o':
                 ca.COUNT -= 1
-                if ca.COUNT < 0: ca.COUNT = 0
+                if ca.COUNT < 0:
+                    ca.COUNT = 0
                 print("Arduino o")
                 print("COUNT: {}".format(ca.COUNT))
 
@@ -112,7 +118,7 @@ if __name__ == '__main__':
     server_address_httpd = (IP, 8080)
     httpd = HTTPServer(server_address_httpd, ca.RequestHandler_httpd)
 
-    driver = cw.connect_to_page()
+    driver = cw.connect_to_page(url=webpage_url)
     arduino = serial.Serial(port, 9600, timeout=.1)
 
     threads = []
