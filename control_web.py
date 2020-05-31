@@ -11,6 +11,7 @@ def connect_to_page(url='http://172.20.10.2'):
 	while True:
 		try:
 			driver.get(url)
+			print ('connect successful')
 			break
 		except TimeoutException as e:
 			pass

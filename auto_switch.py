@@ -1,6 +1,5 @@
 import control_web as cw
-import communication as com
+import serial
 
 if __name__ == '__main__':
-    driver = cw.connect_to_page()
-    
+    driver = cw.connect_to_page('http://www.google.com')
