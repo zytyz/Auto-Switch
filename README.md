@@ -1,7 +1,11 @@
 # Auto-Switch
 ## How To Run
 ### Set up the ESP32 Server
-
+### Raspberry Pi
+1. Driver
+```
+https://blog.gtwang.org/iot/raspberry-pi/raspberry-pi-install-chromium-chrome-driver/
+```
 ## Compile Problem
 ### Wrong Servo Library
 ```
