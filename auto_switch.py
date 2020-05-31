@@ -73,7 +73,7 @@ def arduino_listen():
     global driver, arduino
     print('Listening to Arduino...')
     while True:
-        print(ca.COUNT)
+        # print(ca.COUNT)
         # Listen from App
         if ca.newRequest:
             appRequest = ca.MyRequest
@@ -91,11 +91,14 @@ def arduino_listen():
             if data == 'i':
                 ca.COUNT += 1
                 print("Arduino i")
+                print("COUNT: {}".format(ca.COUNT))
             elif data == 'o':
                 ca.COUNT -= 1
                 if ca.COUNT < 0: ca.COUNT = 0
                 print("Arduino o")
-            elif prev == 1 and ca.COUNT == 0:
+                print("COUNT: {}".format(ca.COUNT))
+
+            if prev == 1 and ca.COUNT == 0:
                 driver = allButtonClick(driver, 0)
                 print('nobody')
             elif prev == 0 and ca.COUNT == 1:
