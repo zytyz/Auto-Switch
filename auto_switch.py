@@ -79,10 +79,13 @@ def arduino_listen():
         # bytesOnBuffer = arduino.in_waiting
         # print("Bytes available: {}".format(bytesOnBuffer))
 
-        data = arduino.read(3).decode('utf-8')
+        data = arduino.read(3)
         print(data)
 
+        data = data.decode('utf-8')
+
         prev = ca.COUNT
+
         if data == 'i':
             ca.COUNT += 1
             print("Arduino i")
