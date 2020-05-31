@@ -23,6 +23,7 @@ def executeAppRequest(appRequest):
     :return:
     """
     global driver
+    print("Executing App Request...")
     if "Button" in appRequest:
         buttonIdx = int(appRequest.split('_')[1])
         buttonClick(driver, signal=buttonIdx)
@@ -49,6 +50,12 @@ def buttonClick(driver, signal):
 
 
 def allButtonClick(driver, signal):
+    """
+    Click all Button once
+    :param driver:
+    :param signal:
+    :return:
+    """
     for i in range(3):
         if signal ^ STATE[i]:
             print('click', i)
