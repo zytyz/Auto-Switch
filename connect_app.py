@@ -5,6 +5,7 @@ MyRequest = None
 newRequest = False
 COUNT = 0
 
+
 class RequestHandler_httpd(BaseHTTPRequestHandler):
     def do_GET(self):
         global newRequest, MyRequest, COUNT
@@ -31,9 +32,11 @@ if __name__ == '__main__':
                 newRequest = False
             # time.sleep(5)
 
+
     def run_server():
         print("Start Server")
         httpd.serve_forever()
+
 
     server_address_httpd = ('192.168.0.102', 8080)
     httpd = HTTPServer(server_address_httpd, RequestHandler_httpd)
