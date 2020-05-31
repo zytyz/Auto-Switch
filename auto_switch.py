@@ -117,7 +117,7 @@ if __name__ == '__main__':
     httpd = HTTPServer(server_address_httpd, ca.RequestHandler_httpd)
 
     driver = cw.connect_to_page()
-    arduino = serial.Serial(port, 9600)
+    arduino = serial.Serial(port, 9600, timeout=.1)
 
     threads = []
     thread_server = threading.Thread(target=run_server)
