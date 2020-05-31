@@ -4,7 +4,7 @@ from http.server import HTTPServer
 import serial
 
 #TODO
-port = '/dev/cu.HC-05-SPPDev-1'
+port = '/dev/cu.usbmodem14101'
 IP = '127.0.0.1'
 
 STATE = [False, False, False]
@@ -17,21 +17,24 @@ def buttonClick(driver, signal):
 def arduinoSignal(driver, signal):
     for i in range(3):
         if signal ^ STATE[i]:
+            print ('click', i)
             driver = buttonClick(driver, i + 1)
+    return driver
 
 if __name__ == '__main__':
     #TODO
     # ESP32
-    driver = cw.connect_to_page('http://www.google.com')
-    arduino = serial.Serial(port, 9600, timeout=.1)
+    driver = cw.connect_to_page()
+    arduino = serial.Serial(port, 9600)
+    print ('Arduino')
 
     # virtual web
     server_address_httpd = (IP, 8080)
     httpd = HTTPServer(server_address_httpd, ca.RequestHandler_httpd)
-    httpd.serve_forever()
+    print ('before serve_forever')
+    # httpd.serve_forever()
 
-    buttonSignal = ca.MyRequest
-
+    print ('START......')
     while True:
         data = arduino.readline()[:-2].decode('utf-8')
 
@@ -39,11 +42,16 @@ if __name__ == '__main__':
         if data == 'i': ca.COUNT += 1
         elif data == 'o': ca.COUNT -= 1
 
-        buttonSignal = 3
+        print (data)
+        print (ca.COUNT)
+
+        buttonSignal = ca.MyRequest
 
         if buttonSignal:
             driver = buttonClick(driver, buttonSignal)
         elif prev == 1 and ca.COUNT == 0:
-            arduinoSignal(0)
+            driver = arduinoSignal(driver, 0)
+            print ('nobody')
         elif prev == 0 and ca.COUNT == 1:
-            arduinoSignal(1)
+            driver = arduinoSignal(driver, 1)
+            print ('one person')

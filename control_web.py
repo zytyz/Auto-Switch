@@ -3,7 +3,7 @@ from selenium.common.exceptions import TimeoutException
 
 button_name_dict = {1:'First_Button', 2:'Second_Button', 3:'Third_Button'}
 
-def connect_to_page(url='http://172.20.10.2'):
+def connect_to_page(url='http://192.168.0.106'):
 	# Using Chrome to access web
 	driver = webdriver.Chrome('./chromedriver')
 	# Open the website
