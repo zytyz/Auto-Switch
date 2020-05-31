@@ -1,6 +1,7 @@
 import serial
 import argparse
 
+
 parser = argparse.ArgumentParser()
 parser.add_argument('-sp', '--serial_port', default="/dev/cu.usbmodem142201", help="Serial Port Name")
 args = parser.parse_args()
