@@ -73,7 +73,6 @@ def arduino_listen():
     global driver, arduino
     print('Listening to Arduino...')
     while True:
-        # print(ca.COUNT)
         # Listen from App
         if ca.newRequest:
             appRequest = ca.MyRequest
