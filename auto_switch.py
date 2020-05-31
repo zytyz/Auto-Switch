@@ -80,9 +80,9 @@ def arduino_listen():
         # print("Bytes available: {}".format(bytesOnBuffer))
 
         data = arduino.read(3)
-        print(data)
+        # print(data)
 
-        data = data.decode('utf-8')
+        data = data.decode('utf-8')[:-2]
 
         prev = ca.COUNT
 
