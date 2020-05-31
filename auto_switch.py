@@ -76,7 +76,7 @@ def arduino_listen():
         print("hihihi")
         # print(ca.newRequest)
         data = arduino.readline()[:-2].decode('utf-8')
-
+        print(data)
 
         prev = ca.COUNT
         if data == 'i':
