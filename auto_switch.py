@@ -73,18 +73,18 @@ def arduino_listen():
     global driver, arduino
     print('Listening to Arduino...')
     while True:
-        print("In Arduino Threading")
+        # print("In Arduino Threading")
         # print(ca.newRequest)
 
         bytesOnBuffer = arduino.in_waiting
         print("Bytes available: {}".format(bytesOnBuffer))
 
         if bytesOnBuffer > 0:
-            data = arduino.readline()[:-2].decode('utf-8')
+            data = arduino.readline().decode('utf-8')
             print(data)
         else:
             data = ''
-            
+
         print(data)
 
         prev = ca.COUNT
