@@ -87,14 +87,11 @@ def arduino_listen():
             ca.COUNT -= 1
             print("Arduino o")
 
-        # print(data)
-        # print(ca.COUNT)
-
         if ca.newRequest:
             appRequest = ca.MyRequest
+            print(appRequest)
             ca.newRequest = False
             executeAppRequest(appRequest)
-
             # driver = buttonClick(driver, buttonSignal)
         elif prev == 1 and ca.COUNT == 0:
             driver = allButtonClick(driver, 0)
