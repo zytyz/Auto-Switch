@@ -11,7 +11,7 @@ try:
     port = sys.argv[1]
     IP = sys.argv[2]
 except:
-    port = "/dev/cu.usbmodem143201" # zyt
+    port = "/dev/cu.usbmodem143201"  # zyt
     IP = '192.168.0.102'
 
 STATE = [False, False, False]
@@ -75,8 +75,14 @@ def arduino_listen():
     while True:
         print("hihihi")
         # print(ca.newRequest)
-        data = arduino.readline()[:-2].decode('utf-8')
-        print(data)
+        bytesOnBuffer = arduino.in_waiting
+        print("Bytes available: {}".format(bytesOnBuffer))
+
+        if bytesOnBuffer > 0:
+            data = arduino.readline()[:-2].decode('utf-8')
+            print(data)
+        else:
+            data = ''
 
         prev = ca.COUNT
         if data == 'i':
