@@ -11,7 +11,7 @@ while True:
     # print("Bytes available: {}".format(bytesOnBuffer))
 
     # if bytesOnBuffer > 0:
-    data = arduino.read(2)
+    data = arduino.read(3)
     print(data)
 
     """
