@@ -73,6 +73,7 @@ def arduino_listen():
     global driver, arduino
     print('Listening to Arduino...')
     while True:
+        print("hihihi")
         # print(ca.newRequest)
         if arduino.in_waiting:
             data = arduino.readline()[:-2].decode('utf-8')
