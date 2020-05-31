@@ -1,57 +1,86 @@
 import control_web as cw
-import connect_app as ca 
+import connect_app as ca
 from http.server import HTTPServer
 import serial
+import threading
 
-#TODO
-port = '/dev/cu.usbmodem14101'
+# TODO
+# port = '/dev/cu.usbmodem14101'
+port = "/dev/cu.usbmodem143201"
 IP = '127.0.0.1'
 
 STATE = [False, False, False]
 
+
 def buttonClick(driver, signal):
+    global STATE
     driver = cw.button_click(driver, signal)
-    STATE[signal - 1] != STATE[signal - 1]
+    STATE[signal - 1] = False if STATE[signal - 1] else True
     return driver
 
-def arduinoSignal(driver, signal):
+
+def allButtonClick(driver, signal):
     for i in range(3):
         if signal ^ STATE[i]:
-            print ('click', i)
+            print('click', i)
             driver = buttonClick(driver, i + 1)
     return driver
 
-if __name__ == '__main__':
-    #TODO
-    # ESP32
-    driver = cw.connect_to_page()
-    arduino = serial.Serial(port, 9600)
-    print ('Arduino')
 
-    # virtual web
-    server_address_httpd = (IP, 8080)
-    httpd = HTTPServer(server_address_httpd, ca.RequestHandler_httpd)
-    print ('before serve_forever')
-    # httpd.serve_forever()
+def run_server():
+    global IP
+    print("Start Server")
+    httpd.serve_forever()
 
-    print ('START......')
+
+def arduino_listen():
+    global driver, arduino
+    print('Listening to Arduino...')
     while True:
-        data = arduino.readline()[:-2].decode('utf-8')
+        # print(ca.newRequest)
+        if arduino.in_waiting:
+            data = arduino.readline()[:-2].decode('utf-8')
+        else:
+            data = ''
 
         prev = ca.COUNT
-        if data == 'i': ca.COUNT += 1
-        elif data == 'o': ca.COUNT -= 1
+        if data == 'i':
+            ca.COUNT += 1
+        elif data == 'o':
+            ca.COUNT -= 1
 
-        print (data)
-        print (ca.COUNT)
+        # print(data)
+        # print(ca.COUNT)
 
-        buttonSignal = ca.MyRequest
+        if ca.newRequest:
+            buttonSignal = ca.MyRequest
+            ca.newRequest = False
+            print(buttonSignal)
 
-        if buttonSignal:
-            driver = buttonClick(driver, buttonSignal)
+            # driver = buttonClick(driver, buttonSignal)
         elif prev == 1 and ca.COUNT == 0:
-            driver = arduinoSignal(driver, 0)
-            print ('nobody')
+            driver = allButtonClick(driver, 0)
+            print('nobody')
         elif prev == 0 and ca.COUNT == 1:
-            driver = arduinoSignal(driver, 1)
-            print ('one person')
+            driver = allButtonClick(driver, 1)
+            print('one person')
+
+
+if __name__ == '__main__':
+    # TODO
+    # ESP32
+
+    server_address_httpd = ('192.168.0.102', 8080)
+    httpd = HTTPServer(server_address_httpd, ca.RequestHandler_httpd)
+
+    driver = cw.connect_to_page()
+    arduino = serial.Serial(port, 9600)
+
+    threads = []
+    thread_server = threading.Thread(target=run_server)
+    threads.append(thread_server)
+    thread_arduino = threading.Thread(target=arduino_listen)
+    threads.append(thread_arduino)
+    # thread.daemon = True
+    for t in threads:
+        t.start()
