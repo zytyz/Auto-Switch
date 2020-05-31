@@ -75,10 +75,8 @@ def arduino_listen():
     while True:
         print("hihihi")
         # print(ca.newRequest)
-        if arduino.in_waiting:
-            data = arduino.readline()[:-2].decode('utf-8')
-        else:
-            data = ''
+        data = arduino.readline()[:-2].decode('utf-8')
+
 
         prev = ca.COUNT
         if data == 'i':
