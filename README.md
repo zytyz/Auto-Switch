@@ -27,7 +27,11 @@ python auto_switch.py <port name> <IP address> <webpage URL>
 ```
 
 #### Downloading the app (Optional: Allows manual control)
-
+1. Download the app via command line
+```
+wget https://github.com/zytyz/Auto-Switch/releases/download/v0/AutoSwitch.apk
+```
+2. Run the .apk file on a Android Device
 
 ## Running
 The switches are automatically controlled as people enter or exit the room. All switches are turned on when there are people remaining in the room, while all switches are turned off when everyone has exited.
