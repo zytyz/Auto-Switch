@@ -7,7 +7,7 @@
 
 
 ## Implementation
-#### Press the light switch buttons with external Servos
+#### Light switches are pressed with external servos
 * The servos are controlled by ESP32 through WiFi connections
 * We 3d-printed a case for three light switches. A light switch is controlled by two servos, one of which presses the switch on while the other presses the switch off.
 <p align="center">
@@ -15,7 +15,11 @@
    </br>
    Servo Case for the switches
 </p>
-#### 
+
+#### The 2 laser sensors determine whether a person has entered
+* Two sensors are placed in front of the door. Laser light is constantly on.
+* When a person enters the room
+* The number of people in the room is recorded. If eveyone has left the room
 
 
 ## Setting Up 
