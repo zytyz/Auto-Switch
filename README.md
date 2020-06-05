@@ -7,6 +7,16 @@
 
 
 ## Implementation
+#### Press the light switch buttons with external Servos
+* The servos are controlled by ESP32 through WiFi connections
+* We 3d-printed a case for three light switches. A light switch is controlled by two servos, one of which presses the switch on while the other presses the switch off.
+<p align="center">
+   <img src="./images/servo_case_ESP32.png" alt="image" width="750"/>
+   </br>
+   Servo Case for the switches
+</p>
+#### 
+
 
 ## Setting Up 
 #### Set up the ESP32 Server
