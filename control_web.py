@@ -7,8 +7,12 @@ button_name_dict = {1: 'First_Button', 2: 'Second_Button', 3: 'Third_Button'}
 
 def connect_to_page(url='http://192.168.0.110'):
     # Using Chrome to access web
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
 
-    driver = webdriver.Chrome('chromedriver')
+    driver = webdriver.Chrome('chromedriver', chrome_options=options)
     # driver = webdriver.Chrome('./chromedriver')
     # Open the website
     driver.set_page_load_timeout(5)
