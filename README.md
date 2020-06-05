@@ -94,3 +94,7 @@ There are three parts of the app interface:
 1. Choose the right Board in the Arduino IDE
    * for ESP32, choose "DOIT ESP32 DEVKIT V1"
    * for Arduino UNO, choose "Arduino UNO"
+2. When connecting to Rpi remotely, make sure to connect to the Raspberry Pi with X11 forwarding enabled.
+```
+ssh -X pi@192.xx.x.xx
+```
