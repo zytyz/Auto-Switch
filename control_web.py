@@ -1,10 +1,11 @@
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
+import sys
 
 button_name_dict = {1: 'First_Button', 2: 'Second_Button', 3: 'Third_Button'}
 
 
-def connect_to_page(url='http://192.168.0.106'):
+def connect_to_page(url='http://192.168.0.110'):
     # Using Chrome to access web
 
     driver = webdriver.Chrome('chromedriver')
@@ -30,6 +31,6 @@ def button_click(driver, button_idx):
 
 
 if __name__ == '__main__':
-    driver = connect_to_page()
+    driver = connect_to_page(url=sys.argv[1])
     driver = button_click(driver, 1)
     driver = button_click(driver, 1)

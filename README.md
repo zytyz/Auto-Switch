@@ -1,10 +1,12 @@
 # Auto-Switch
 
-## Motivation
+## Introduction
+
 
 ## System Architecture
 
-## Code Explanation
+
+## Implementation
 
 ## Setting Up 
 #### Set up the ESP32 Server

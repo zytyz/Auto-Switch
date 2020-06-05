@@ -17,7 +17,7 @@ except:
 try:
     webpage_url = sys.argv[3]
 except:
-    webpage_url = '192.168.0.106'
+    webpage_url = '192.168.0.110'
 
 STATE = [False, False, False]
 
