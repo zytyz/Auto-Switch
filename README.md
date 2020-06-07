@@ -112,13 +112,12 @@ There are three parts of the app interface:
 ```
 ssh -X pi@192.xx.x.xx
 ```
-3. (continue from 2) Instead of opening a browser, add few codes to bypass the problem.
+3. (continue) Instead of opening a browser, add few codes to bypass the problem.
 ```python=
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 
-~~driver = webdriver.Chrome('chromedriver')~~
 driver = webdriver.Chrome('chromedriver', chrome_options=options)
 ```
