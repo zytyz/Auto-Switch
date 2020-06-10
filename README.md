@@ -22,7 +22,7 @@ The image above shows our system architecture. Our system consists of different 
    * ESP32 turns on/off the light switches following the commands from *Raspberry Pi via Wi-Fi connections*.
 3. **Raspberry Pi**
    * Raspberry acts at the control conter of the system.
-   * Based on the information from the arduino board, it records the number of people currently in the room.
+   * Based on the information from the arduino board, it records *the number of people currently in the room*.
    * If someone enters an orginally empty room, it *automatically* sends a message to ESP32 and turns on the lights.
    * Contrastly, when the last person left the room, it *automatically* sends a message to ESP32 and turns off the lights.
 4. **App**
@@ -31,12 +31,14 @@ The image above shows our system architecture. Our system consists of different 
    * The app is based on Android and communicates with Raspberry Pi *via Wi-Fi connection* as well.
 
 
-### When a person enters the room...
+### Detecting a Person Entering/ Exiting the Room...
 <p align="center">
    <img src="./images/enter_room.png" alt="image" width="750"/>
    </br>
-   The laser detector
+   When a person enters the room, Laser 1 is blocked first.
 </p>
+
+When a person enters the room, his/her body would **block the laser beam**, following the order of laser 1 and laser 2. This means that **sensor 1 would first detect "No Laser", and then sensor 2 would detect "No Laser"** as well. Since the arduino board constantly gets the information from the two sensors, it is able to detect and send a message to Raspberry Pi when a person enters. Similarly, the arduino board is also able to detect a person exiting, since this would require sensor 2 detecting "No Laser" first.
 
 ## Implementation
 #### Light switches are pressed with external servos
