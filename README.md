@@ -1,7 +1,7 @@
 # Auto-Switch
 
 ## Introduction
-
+why用外力按開關
 
 ## System Architecture
 <p align="center">
@@ -10,7 +10,33 @@
    System Architecture
 </p>
 
+The image above shows our system architecture. Our system consists of different parts which are described in details as follows:
+1. **Laser** and **Laser Detector**
+   * Two pairs of lasers and laser sensors are placed in front of the door. The lasers are *constantly on* and aim at the corresponding sensor.
+   * The laser sensors are connected to an arduino board that is connected to Raspberry Pi via *serial* port.
+   * Together with the laser sensors, the arduino board is able to send a message to Raspberry Pi if a person *enters or exits the room*. (Details are described below)
+2. **ESP32** and **Servos**
+   * ESP32 board is microcontroll processing unit with integrated Wi-Fi and bluetooth connectivity.
+   * The light switches of the room are *externally pressed by a number of servos*.
+   * The servos are powered and controlled by ESP32.
+   * ESP32 turns on/off the light switches following the commands from *Raspberry Pi via Wi-Fi connections*.
+3. **Raspberry Pi**
+   * Raspberry acts at the control conter of the system.
+   * Based on the information from the arduino board, it records the number of people currently in the room.
+   * If someone enters an orginally empty room, it *automatically* sends a message to ESP32 and turns on the lights.
+   * Contrastly, when the last person left the room, it *automatically* sends a message to ESP32 and turns off the lights.
+4. **App**
+   * Although the lights are controlled automatically, e.g. Lights are on when someone is in the room while lights are off when the room is empty, one still might want to *control the lights manually*.
+   * We designed an app to meet this need.
+   * The app is based on Android and communicates with Raspberry Pi *via Wi-Fi connection* as well.
+
+
 ### When a person enters the room...
+<p align="center">
+   <img src="./images/enter_room.png" alt="image" width="750"/>
+   </br>
+   The laser detector
+</p>
 
 ## Implementation
 #### Light switches are pressed with external servos
