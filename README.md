@@ -1,7 +1,15 @@
 # Auto-Switch
 
 ## Introduction
-why用外力按開關
+Automatic light switches are common nowadays. 
+
+## Hardware Requirements
+* Raspberry Pi 3
+* Arduino Uno Board
+* KY-008 Laser Transmitter x2
+* Laser Detector x2
+* ESP32 Board
+* SG90 Servo x6
 
 ## System Architecture
 <p align="center">
@@ -41,19 +49,29 @@ The image above shows our system architecture. Our system consists of different 
 When a person enters the room, his/her body would **block the laser beam**, following the order of laser 1 and laser 2. This means that **sensor 1 would first detect "No Laser", and then sensor 2 would detect "No Laser"** as well. Since the arduino board constantly gets the information from the two sensors, it is able to detect and send a message to Raspberry Pi when a person enters. Similarly, the arduino board is also able to detect a person exiting, since this would require sensor 2 detecting "No Laser" first.
 
 ## Implementation
-#### Light switches are pressed with external servos
-* The servos are controlled by ESP32 through WiFi connections
-* We 3d-printed a case for three light switches. A light switch is controlled by two servos, one of which presses the switch on while the other presses the switch off.
+### Light switches are pressed with external servos
+In order to control the servos to press the switches, we 3d-printed a case for three light switches. The case would be attached to the frame of light switches. Each light switch is controlled by two servos, one of which presses the switch on while the other presses the switch off.
 <p align="center">
    <img src="./images/servo_case_ESP32.png" alt="image" width="750"/>
    </br>
    Servo Case for the switches
 </p>
 
-#### The 2 laser sensors determine whether a person has entered
+### The 2 laser sensors determine whether a person has entered or exited the room
 * Two sensors are placed in front of the door. Laser light is constantly on.
 * When a person enters the room
 * The number of people in the room is recorded. If eveyone has left the room
+
+### One can also control the lights manually with our App
+
+### Putting Everything Together...
+<p align="center">
+   <img src="./images/system_workflow.png" alt="image" width="300"/>
+   </br>
+   Servo Case for the switches
+</p>
+
+## Code Explanation
 
 
 ## Setting Up 
