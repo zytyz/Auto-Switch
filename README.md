@@ -57,12 +57,18 @@ In order to control the servos to press the switches, we 3d-printed a case for t
    Servo Case for the switches
 </p>
 
-### The 2 laser sensors determine whether a person has entered or exited the room
-* Two sensors are placed in front of the door. Laser light is constantly on.
-* When a person enters the room
-* The number of people in the room is recorded. If eveyone has left the room
+### The ardunio board determine whether a person has entered or exited the room
+* With the information from the laser dectectors, the arduino board detects entry or exits. As described in the system architecture, the detection is based on *which laser detector stops receiving laser first*.
+* This strategy can be depicted as a state diagram:
+
+<p align="center">
+   <img src="./images/laser_detect.png" alt="image" width="750"/>
+   </br>
+   Laser detecters are connected to the arduino board.
+</p>
 
 ### One can also control the lights manually with our App
+* 
 
 ### Putting Everything Together...
 <p align="center">
