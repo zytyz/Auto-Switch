@@ -1,7 +1,7 @@
 # Auto-Switch
 
 ## Introduction
-Automatic light switches are common nowadays. 
+Automatic light switches are common nowadays. Most poeple are used to entering a room with the light switches turned on autonmatically. However, most of these control systems detects entry with movements. Hence, if a person has been in the room for a while and does not frequently move, the system might consider that the person has left and turns off the light even if the person is still in the room. Another disadvantage of these systems is that they control the lights by actually cutting off or resuming the power. This means it would be hard to set up such systems without having access to the power systems. Thus, we designed a new light-control system which detects and keeps track of the number of people in the room. Without access to the power system, we control servos to press the light switches externally. This way, one can enable or diable the system easily without disrupting the power system.
 
 ## Hardware Requirements
 * Raspberry Pi 3
@@ -59,6 +59,7 @@ In order to control the servos to press the switches, we 3d-printed a case for t
 
 ### The ardunio board determine whether a person has entered or exited the room
 * With the information from the laser dectectors, the arduino board detects entry or exits. As described in the system architecture, the detection is based on *which laser detector stops receiving laser first*.
+* When the arduino board detects an entry, it sends a character ```i``` to Raspberry Pi. Otherwise, if an exit is detected, a character ```o``` is sent.
 * This strategy can be depicted as a state diagram:
 
 <p align="center">
@@ -68,7 +69,9 @@ In order to control the servos to press the switches, we 3d-printed a case for t
 </p>
 
 ### One can also control the lights manually with our App
-* 
+* The communication between the app and Raspberry Pi is based on the **HTTP protocol**. Since the app is not mandatory and does not run constantly, Raspberry Pi acts as the *HTTP server* while our app acts as the *HTTP client*.
+* When the user presses a button on the app, an **HTTP request** is sent to the server and thus light switches are turned on or off.
+* The app was developed using the [MIT App Inventor](https://appinventor.mit.edu/).
 
 ### Putting Everything Together...
 <p align="center">
@@ -76,9 +79,6 @@ In order to control the servos to press the switches, we 3d-printed a case for t
    </br>
    Servo Case for the switches
 </p>
-
-## Code Explanation
-
 
 ## Setting Up 
 #### Set up the ESP32 Server
@@ -88,7 +88,7 @@ In order to control the servos to press the switches, we 3d-printed a case for t
 2. After pressing the EN button, open the Serial Monitor to know the **webpage URL**.
 
 #### Set up the Laser and Sensor Module
-1. Upload ```tmp.ino``` to the Arduino Board
+1. Upload ```Laser_and_Detecter/Laser_and_Detecter.ino``` to the Arduino Board
 
 #### Setting up Raspberry Pi
 1. Connect Rpi to the same network ESP32 is connected to.
