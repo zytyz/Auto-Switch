@@ -4,7 +4,13 @@
 
 
 ## System Architecture
+<p align="center">
+   <img src="./images/architecture.png" alt="image" width="750"/>
+   </br>
+   System Architecture
+</p>
 
+### When a person enters the room...
 
 ## Implementation
 #### Light switches are pressed with external servos
