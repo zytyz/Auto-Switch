@@ -51,7 +51,6 @@ The image above shows our system architecture. Our system consists of different 
 When a person enters the room, his/her body would **block the laser beam**, following the order of laser 1 and laser 2. This means that **sensor 1 would first detect "No Laser", and then sensor 2 would detect "No Laser"** as well. Since the arduino board constantly gets the information from the two sensors, it is able to detect and send a message to Raspberry Pi when a person enters. Similarly, the arduino board is also able to detect a person exiting, since this would require sensor 2 detecting "No Laser" first.
 
 
-<div style="page-break-after: always; break-after: page;"></div>
 ## Implementation
 #### Light switches are pressed with external servos
 In order to control the servos to press the switches, we 3d-printed a case for three light switches. The case would be attached to the frame of light switches. Each light switch is controlled by two servos, one of which presses the switch on while the other presses the switch off.
