@@ -3,6 +3,8 @@
 ## Introduction
 Automatic light switches are common nowadays. Most poeple are used to entering a room with the light switches turned on autonmatically. However, most of these control systems detects entry with movements. Hence, if a person has been in the room for a while and does not frequently move, the system might consider that the person has left and turns off the light even if the person is still in the room. Another disadvantage of these systems is that they control the lights by actually cutting off or resuming the power. This means it would be hard to set up such systems without having access to the power systems. Thus, we designed a new light-control system which detects and keeps track of the number of people in the room. Without access to the power system, we control servos to press the light switches externally. This way, one can enable or diable the system easily without disrupting the power system.
 
+Click [here](https://www.youtube.com/watch?v=F3O4oTbGK0E) for the demo video.
+
 ## Hardware Requirements
 * Raspberry Pi 3
 * Arduino Uno Board
