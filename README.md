@@ -1,7 +1,7 @@
 # Auto-Switch: Final Demo Report
 
 ## Introduction
-Automatic light switches are common nowadays. Most poeple are used to entering a room with the light switches turned on autonmatically. However, most of these control systems detects entry with movements. Hence, if a person has been in the room for a while and does not frequently move, the system might consider that the person has left and turns off the light even if the person is still in the room. Another disadvantage of these systems is that they control the lights by actually cutting off or resuming the power. This means it would be hard to set up such systems without having access to the power systems. Thus, we designed a new light-control system which detects and keeps track of the number of people in the room. Without access to the power system, we control servos to press the light switches externally. This way, one can enable or diable the system easily without disrupting the power system.
+Automatic light switches are common nowadays. Most people are used to entering a room with the light switches turned on automatically. However, most of these control systems detects entry with movements. Hence, if a person has been in the room for a while and does not frequently move, the system might consider that the person has left and turns off the light even if the person is still in the room. Another disadvantage of these systems is that they control the lights by actually cutting off or resuming the power. This means it would be hard to set up such systems without having access to the power systems. Thus, we designed a new light-control system which detects and keeps track of the number of people in the room. Without access to the power system, we control servos to press the light switches externally. This way, one can enable or disable the system easily without disrupting the power system.
 
 Click [here](https://www.youtube.com/watch?v=F3O4oTbGK0E) for the demo video.
 
@@ -28,7 +28,7 @@ The image above shows our system architecture. Our system consists of different 
    * The laser sensors are connected to an arduino board that is connected to Raspberry Pi via *serial* port.
    * Together with the laser sensors, the arduino board is able to send a message to Raspberry Pi if a person *enters or exits the room*. (Details are described below)
 2. **ESP32** and **Servos**
-   * ESP32 board is microcontroll processing unit with integrated Wi-Fi and bluetooth connectivity.
+   * ESP32 board is microcontroller processing unit with integrated Wi-Fi and bluetooth connectivity.
    * The light switches of the room are *externally pressed by a number of servos*.
    * The servos are powered and controlled by ESP32.
    * ESP32 turns on/off the light switches following the commands from *Raspberry Pi via Wi-Fi connections*.
@@ -63,7 +63,7 @@ In order to control the servos to press the switches, we 3d-printed a case for t
 </p>
 
 
-#### The ardunio board detects entries and exits
+#### The arduino board detects entries and exits
 * With the information from the laser dectectors, the arduino board detects entry or exits. As described in the system architecture, the detection is based on *which laser detector stops receiving laser first*.
 * When the arduino board detects an entry, it sends a character ```i``` to Raspberry Pi. Otherwise, if an exit is detected, a character ```o``` is sent.
 * This strategy can be depicted as a state diagram with 5 states:
@@ -141,7 +141,7 @@ There are three parts of the app interface:
 </p>
 
 
-## Diffuculties and Solution
+## Difficulties and Solution
 #### ESP32 Setup
 
 1. Wrong Servo Library
